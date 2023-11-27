@@ -26,10 +26,10 @@ if [[ -z "$msg1" ]]; then
 	sleep 2
 	banner
 fi
-echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m FONTE PEQUENA"
-echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m FONTE MEDIA"
-echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m FONTE GRANDE"
-echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m FONTE GIGANTE"
+echo -e "\n\033[1;31m[\033[1;36m01\033[1;31m]\033[1;33m FONTE SMALL"
+echo -e "\033[1;31m[\033[1;36m02\033[1;31m]\033[1;33m FONTE MEDIUM"
+echo -e "\033[1;31m[\033[1;36m03\033[1;31m]\033[1;33m FONTE BUYUK"
+echo -e "\033[1;31m[\033[1;36m04\033[1;31m]\033[1;33m FONTE DAHA BUYUK"
 echo ""
 echo -ne "\033[1;32mQUAL O TAMANHO DA FONTE\033[1;31m ?\033[1;37m : "; read opc
 if [[ "$opc" = "1" ]] || [[ "$opc" = "01" ]]; then
