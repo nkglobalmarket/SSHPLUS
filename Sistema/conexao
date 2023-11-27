@@ -25,7 +25,7 @@ SCOLOR='\033[0m'
 			touch $HOME/fim
 		) >/dev/null 2>&1 &
 		tput civis
-		echo -ne "\033[1;33mAGUARDE \033[1;37m- \033[1;33m["
+		echo -ne "\033[1;33mBEKLE \033[1;37m- \033[1;33m["
 		while true; do
 			for ((i = 0; i < 18; i++)); do
 				echo -ne "\033[1;31m#"
@@ -93,7 +93,7 @@ SCOLOR='\033[0m'
 			echo -e "\E[44;1;37m              INSTALADOR SQUID                \E[0m"
 			echo ""
 			IP=$(wget -qO- ipv4.icanhazip.com)
-			echo -ne "\033[1;32mPARA CONTINUAR CONFIRME SEU IP: \033[1;37m"
+			echo -ne "\033[1;32mPARA DEVAM ETMEK ICIN IP KONTROL EDIN: \033[1;37m"
 			read -e -i $IP ipdovps
 			[[ -z "$ipdovps" ]] && {
 				echo -e "\n\033[1;31mIP invalido\033[1;32m"
@@ -106,7 +106,7 @@ SCOLOR='\033[0m'
 			echo -ne "\033[1;32mINFORME AS PORTAS\033[1;37m: "
 			read portass
 			[[ -z "$portass" ]] && {
-				echo -e "\n\033[1;31mPorta invalida!"
+				echo -e "\n\033[1;31mPort HATASI!"
 				sleep 3
 				fun_conexao
 			}
@@ -114,24 +114,24 @@ SCOLOR='\033[0m'
 				verif_ptrs $porta
 			done
 			[[ $(grep -wc '14' /etc/issue.net) != '0' ]] || [[ $(grep -wc '8' /etc/issue.net) != '0' ]] && {
-				echo -e "\n\033[1;32mINSTALANDO SQUID PROXY\033[0m\n"
+				echo -e "\n\033[1;32mSQUID PROXY KUR\033[0m\n"
 				fun_bar 'apt update -y' "apt install squid3 -y"
 			} || {
-				echo -e "\n\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mSQUID VERSAO 3.3.X\n\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mSQUID VERSAO 3.5.X\033[0m\n"
-				read -p "$(echo -e "\033[1;32mINFORME UMA OPÇÃO \033[1;37m: ")" -e -i 1 opc
+				echo -e "\n\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mSQUID SURUM 3.3.X\n\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mSQUID SURUM 3.5.X\033[0m\n"
+				read -p "$(echo -e "\033[1;32mSEC \033[1;37m: ")" -e -i 1 opc
 				[[ -z "$opc" ]] && {
-					echo -e "\n\033[1;31mOpcao invalida!"
+					echo -e "\n\033[1;31mGECERSIZ!"
 					sleep 2
 					fun_conexao
 				}
 				[[ "$opc" != '1' ]] && {
 					[[ "$opc" != '2' ]] && {
-						echo -e "\n\033[1;31mOpcao invalida !"
+						echo -e "\n\033[1;31mGECERSIZ !"
 						sleep 2
 						fun_conexao
 					}
 				}
-				echo -e "\n\033[1;32mINSTALANDO SQUID PROXY\033[0m\n"
+				echo -e "\n\033[1;32mKURULUM SQUID PROXY\033[0m\n"
 				fun_bar 'apt update -y' "instsqd $opc"
 			}
 			if [[ -d "/etc/squid/" ]]; then
@@ -141,7 +141,7 @@ SCOLOR='\033[0m'
 				var_sqd="/etc/squid3/squid.conf"
 				var_pay="/etc/squid3/payload.txt"
 			else
-				echo -e "\n\033[1;33m[\033[1;31mERRO\033[1;33m]\033[1;37m: \033[1;33mO SQUID PROXY CORROMPEU\033[0m"
+				echo -e "\n\033[1;33m[\033[1;31mERRO\033[1;33m]\033[1;37m: \033[1;33mO SQUID PROXY hata\033[0m"
 				sleep 2
 				fun_conexao
 			fi
@@ -191,87 +191,87 @@ SCOLOR='\033[0m'
 					service squid3 restart
 				}
 			}
-			echo -e "\n\033[1;32mCONFIGURANDO SQUID PROXY\033[0m"
+			echo -e "\n\033[1;32mAYARLAMA SQUID PROXY\033[0m"
 			echo ""
 			fun_bar 'sqd_conf'
-			echo -e "\n\033[1;32mSQUID INSTALADO COM SUCESSO!\033[0m"
+			echo -e "\n\033[1;32mSQUID PROXY KURULDU!\033[0m"
 			sleep 2.5s
 			fun_conexao
 		fi
 	}
 
 	addpt_sqd() {
-		echo -e "\E[44;1;37m         ADICIONAR PORTA AO SQUID         \E[0m"
+		echo -e "\E[44;1;37m         PORT EKLE         \E[0m"
 		echo -e "\n\033[1;33mPORTAS EM USO: \033[1;32m$sqdp\n"
 		if [[ -f "/etc/squid/squid.conf" ]]; then
 			var_sqd="/etc/squid/squid.conf"
 		elif [[ -f "/etc/squid3/squid.conf" ]]; then
 			var_sqd="/etc/squid3/squid.conf"
 		else
-			echo -e "\n\033[1;31mSQUID NAO ESTA INSTALADO!\033[0m"
-			echo -e "\n\033[1;31mRetornando...\033[0m"
+			echo -e "\n\033[1;31mSQUID KURULU DEGIL!\033[0m"
+			echo -e "\n\033[1;31mGERI DONULUYOR...\033[0m"
 			sleep 2
 			clear
 			fun_squid
 		fi
-		echo -ne "\033[1;32mQUAL PORTA DESEJA ADICIONAR \033[1;33m?\033[1;37m "
+		echo -ne "\033[1;32mPORT EKLE \033[1;33m?\033[1;37m "
 		read pt
 		[[ -z "$pt" ]] && {
-			echo -e "\n\033[1;31mPorta invalida!"
+			echo -e "\n\033[1;31mPort HATASI!"
 			sleep 2
 			clear
 			fun_conexao
 		}
 		verif_ptrs $pt
-		echo -e "\n\033[1;32mADICIONANDO PORTA AO SQUID!"
+		echo -e "\n\033[1;32mPORT EKLENIYOR SQUID!"
 		echo ""
 		sed -i "s/#Portas/#Portas\nhttp_port $pt/g" $var_sqd
 		fun_bar 'sleep 2'
-		echo -e "\n\033[1;32mREINICIANDO O SQUID!"
+		echo -e "\n\033[1;32mYENILENIYOR SQUID!"
 		echo ""
 		fun_bar 'service squid restart' 'service squid3 restart'
-		echo -e "\n\033[1;32mPORTA ADICIONADA COM SUCESSO!"
+		echo -e "\n\033[1;32mPORT EKLEME BASARILI !"
 		sleep 3
 		clear
 		fun_squid
 	}
 
 	rempt_sqd() {
-		echo -e "\E[41;1;37m        REMOVER PORTA DO SQUID        \E[0m"
-		echo -e "\n\033[1;33mPORTAS EM USO: \033[1;32m$sqdp\n"
+		echo -e "\E[41;1;37m        PORT SIL        \E[0m"
+		echo -e "\n\033[1;33mAKTIF PORTLAR: \033[1;32m$sqdp\n"
 		if [[ -f "/etc/squid/squid.conf" ]]; then
 			var_sqd="/etc/squid/squid.conf"
 		elif [[ -f "/etc/squid3/squid.conf" ]]; then
 			var_sqd="/etc/squid3/squid.conf"
 		else
-			echo -e "\n\033[1;31mSQUID NAO ESTA INSTALADO!\033[0m"
-			echo -e "\n\033[1;31mRetornando...\033[0m"
+			echo -e "\n\033[1;31mSQUID KURULU DEGIL!\033[0m"
+			echo -e "\n\033[1;31mGERI DONULUYOR...\033[0m"
 			sleep 2
 			clear
 			fun_squid
 		fi
-		echo -ne "\033[1;32mQUAL PORTA DESEJA REMOVER \033[1;33m?\033[1;37m "
+		echo -ne "\033[1;32mKALDIRILICAK PORTU YAZIN \033[1;33m?\033[1;37m "
 		read pt
 		[[ -z "$pt" ]] && {
-			echo -e "\n\033[1;31mPorta invalida!"
+			echo -e "\n\033[1;31mPort GECERSIZ!"
 			sleep 2
 			clear
 			fun_conexao
 		}
 		if grep -E "$pt" $var_sqd >/dev/null 2>&1; then
-			echo -e "\n\033[1;32mREMOVENDO PORTA DO SQUID!"
+			echo -e "\n\033[1;32mPORT KALDIRILIYOR!"
 			echo ""
 			sed -i "/http_port $pt/d" $var_sqd
 			fun_bar 'sleep 3'
-			echo -e "\n\033[1;32mREINICIANDO O SQUID!"
+			echo -e "\n\033[1;32mSQUID YENIDEN BASLATILIYOR!"
 			echo ""
 			fun_bar 'service squid restart' 'service squid3 restart'
-			echo -e "\n\033[1;32mPORTA REMOVIDA COM SUCESSO!"
+			echo -e "\n\033[1;32mPORT KALDIRMA BASARILI !"
 			sleep 3.5s
 			clear
 			fun_squid
 		else
-			echo -e "\n\033[1;31mPORTA \033[1;32m$pt \033[1;31mNAO ENCONTRADA!"
+			echo -e "\n\033[1;31mPORTA \033[1;32m$pt \033[1;31mBULUNAMADI!"
 			sleep 3.5s
 			clear
 			fun_squid
@@ -284,16 +284,16 @@ SCOLOR='\033[0m'
 		[[ "$(netstat -nplt | grep -c 'squid')" != "0" ]] && {
 			sqdp=$(netstat -nplt | grep 'squid' | awk -F ":" {'print $4'} | xargs)
 			echo -e "\n\033[1;33mPORTAS\033[1;37m: \033[1;32m$sqdp"
-			VarSqdOn="REMOVER SQUID PROXY"
+			VarSqdOn=" SQUID PROXY KALDIR"
 		} || {
-			VarSqdOn="INSTALAR SQUID PROXY"
+			VarSqdOn=" SQUID PROXY YUKLE "
 		}
 		echo -e "\n\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33m$VarSqdOn \033[1;31m
-[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mADICIONAR PORTA \033[1;31m
-[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mREMOVER PORTA\033[1;31m
-[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mVOLTAR\033[0m"
+[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mPORT EKLE \033[1;31m
+[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mPORT KALDIR\033[1;31m
+[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mGERI\033[0m"
 		echo ""
-		echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;33m?\033[1;31m?\033[1;37m "
+		echo -ne "\033[1;32mNE YAPMAK ISTIYORSUNUZ \033[1;33m?\033[1;31m?\033[1;37m "
 		read x
 		clear
 		case $x in
@@ -307,12 +307,12 @@ SCOLOR='\033[0m'
 			rempt_sqd
 			;;
 		0 | 00)
-			echo -e "\033[1;31mRetornando...\033[0m"
+			echo -e "\033[1;31mGERI DONULUYOR...\033[0m"
 			sleep 1
 			fun_conexao
 			;;
 		*)
-			echo -e "\033[1;31mOpcao Invalida...\033[0m"
+			echo -e "\033[1;31mGECERSIZ SECIM...\033[0m"
 			sleep 2
 			fun_conexao
 			;;
@@ -328,20 +328,20 @@ SCOLOR='\033[0m'
 			else
 				stats='\033[1;31m○ '
 			fi
-			echo -e "\E[44;1;37m              GERENCIAR DROPBEAR               \E[0m"
+			echo -e "\E[44;1;37m              DROPBEAR  YONET             \E[0m"
 			echo -e "\n\033[1;33mPORTAS\033[1;37m: \033[1;32m$dpbr"
 			echo ""
-			echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mLIMITER DROPBEAR $stats\033[0m"
-			echo -e "\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mALTERAR PORTA DROPBEAR\033[0m"
-			echo -e "\033[1;31m[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mREMOVER DROPBEAR\033[0m"
-			echo -e "\033[1;31m[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mVOLTAR\033[0m"
+			echo -e "\033[1;31m[\033[1;36m1\033[1;31m] \033[1;37m• \033[1;33mDROPBEAR SINIRLAYICI $stats\033[0m"
+			echo -e "\033[1;31m[\033[1;36m2\033[1;31m] \033[1;37m• \033[1;33mPORT DEGISTIR DROPBEAR\033[0m"
+			echo -e "\033[1;31m[\033[1;36m3\033[1;31m] \033[1;37m• \033[1;33mKALDIR DROPBEAR\033[0m"
+			echo -e "\033[1;31m[\033[1;36m0\033[1;31m] \033[1;37m• \033[1;33mGERI\033[0m"
 			echo ""
-			echo -ne "\033[1;32mOQUE DESEJA FAZER \033[1;33m?\033[1;37m "
+			echo -ne "\033[1;32mBIRINI SECIN \033[1;33m?\033[1;37m "
 			read resposta
 			if [[ "$resposta" = '1' ]]; then
 				clear
 				if ps x | grep "limiter" | grep -v grep 1>/dev/null 2>/dev/null; then
-					echo -e "\033[1;32mParando o limiter... \033[0m"
+					echo -e "\033[1;32mSINIRLAYICI DURDURULUYOR... \033[0m"
 					echo ""
 					fun_stplimiter() {
 						pidlimiter=$(ps x | grep "limiter" | awk -F "pts" {'print $1'})
@@ -349,14 +349,14 @@ SCOLOR='\033[0m'
 						screen -wipe
 					}
 					fun_bar 'fun_stplimiter' 'sleep 2'
-					echo -e "\n\033[1;31m LIMITER DESATIVADO \033[0m"
+					echo -e "\n\033[1;31m DEVREDISI \033[0m"
 					sleep 3
 					fun_drop
 				else
-					echo -e "\n\033[1;32mIniciando o limiter... \033[0m"
+					echo -e "\n\033[1;32mSINIRLAYICI BASLAT... \033[0m"
 					echo ""
 					fun_bar 'screen -d -m -t limiter droplimiter' 'sleep 3'
-					echo -e "\n\033[1;32m  LIMITER ATIVADO \033[0m"
+					echo -e "\n\033[1;32m  SINIRLAYICI AKTIF \033[0m"
 					sleep 3
 					fun_drop
 				fi
@@ -367,19 +367,19 @@ SCOLOR='\033[0m'
 				echo ""
 				verif_ptrs $pt
 				var1=$(grep 'DROPBEAR_PORT=' /etc/default/dropbear | cut -d'=' -f2)
-				echo -e "\033[1;32mALTERANDO PORTA DROPBEAR!"
+				echo -e "\033[1;32mDEGISTIR PORTA DROPBEAR!"
 				sed -i "s/\b$var1\b/$pt/g" /etc/default/dropbear >/dev/null 2>&1
 				echo ""
 				fun_bar 'sleep 2'
-				echo -e "\n\033[1;32mREINICIANDO DROPBEAR!"
+				echo -e "\n\033[1;32mYENIDEN BASLATILIYOR!"
 				echo ""
 				fun_bar 'service dropbear restart' '/etc/init.d/dropbear restart'
-				echo -e "\n\033[1;32mPORTA ALTERADA COM SUCESSO!"
+				echo -e "\n\033[1;32mPORT BASARILI SUCESSO!"
 				sleep 3
 				clear
 				fun_conexao
 			elif [[ "$resposta" = '3' ]]; then
-				echo -e "\n\033[1;32mREMOVENDO O DROPBEAR !\033[0m"
+				echo -e "\n\033[1;32mRPKALDIR DROPBEAR !\033[0m"
 				echo ""
 				fun_dropunistall() {
 					service dropbear stop && /etc/init.d/dropbear stop
@@ -390,7 +390,7 @@ SCOLOR='\033[0m'
 					rm -rf /etc/default/dropbear
 				}
 				fun_bar 'fun_dropunistall'
-				echo -e "\n\033[1;32mDROPBEAR REMOVIDO COM SUCESSO !\033[0m"
+				echo -e "\n\033[1;32mDROPBEAR BASARILI KALDIRILDI !\033[0m"
 				sleep 3
 				clear
 				fun_conexao
@@ -399,7 +399,7 @@ SCOLOR='\033[0m'
 				sleep 2
 				fun_conexao
 			else
-				echo -e "\n\033[1;31mOpcao invalida...\033[0m"
+				echo -e "\n\033[1;31mGECERSIZ...\033[0m"
 				sleep 2
 				fun_conexao
 			fi
