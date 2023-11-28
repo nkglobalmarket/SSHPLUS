@@ -4,7 +4,7 @@ echo -e "\E[44;1;37m                VPS INFO NK MARKET                \E[0m"
 echo ""
 if [ -f /etc/lsb-release ]
 then
-echo -e "\033[1;31m• \033[1;32mSISTEMA OPERACIONAL\033[1;31m •\033[0m"
+echo -e "\033[1;31m• \033[1;32mISLETIM SISTEMI\033[1;31m •\033[0m"
 echo ""
 name=$(cat /etc/lsb-release |grep DESCRIPTION |awk -F = {'print $2'})
 codename=$(cat /etc/lsb-release |grep CODENAME |awk -F = {'print $2'})
