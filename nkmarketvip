@@ -28,8 +28,8 @@ while true; do
             ;;
         3)
             echo "nkmarket güncelle secildi."
-            echo "Calisan komut: apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarket.sh && chmod 777 nkmarket.sh && ./nkmarket.sh"
-            apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarket.sh && chmod 777 nkmarket.sh && ./nkmarket.sh
+            echo "Calisan komut: apt update -y && "
+
             ;;
         4)
             echo "Cikis secildi. Script kapatiliyor."
