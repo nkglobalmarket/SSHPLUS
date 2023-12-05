@@ -10,9 +10,10 @@ while true; do
     echo "----NK MARKET SUNUCU KURUCU----"
     echo "1. ssh kur"
     echo "2. x-ui kur"
-    echo "3. cik"
+    echo "3. nkmarket güncelle"
+    echo "4. cik"
     
-    read -p "Secenek girin (1/2/3): " option
+    read -p "Secenek girin (1/2/3/4): " option
 
     case $option in
         1)
@@ -26,6 +27,11 @@ while true; do
             apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/kiritosshxd/SSHPLUS/master/Plus && chmod 777 Plus && ./Plus
             ;;
         3)
+            echo "nkmarket güncelle secildi."
+            echo "Calisan komut: apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarket.sh && chmod 777 nkmarket.sh && ./nkmarket.sh"
+            apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarket.sh && chmod 777 nkmarket.sh && ./nkmarket.sh
+            ;;
+        4)
             echo "Cikis secildi. Script kapatiliyor."
             exit 0
             ;;
