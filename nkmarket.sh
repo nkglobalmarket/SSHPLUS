@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Scripti kaydetme komutu
+sudo cp "$0" /usr/local/bin/nkmarket
+
 # NK MARKET SUNUCU KURUCU
 
 while true; do
