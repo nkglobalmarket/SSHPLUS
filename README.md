@@ -8,4 +8,4 @@ apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglob
 wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/senharoot.sh && chmod 777 senharoot.sh && ./senharoot.sh
 
 
-apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarket.sh && chmod 777 nkmarket.sh && ./nkmarket.sh
+apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarketvip.sh && chmod 777 nkmarketvip.sh && ./nkmarketvip.sh
