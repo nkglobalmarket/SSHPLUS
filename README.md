@@ -9,3 +9,5 @@ wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/senharoot.s
 
 
 apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarketvip && chmod 777 nkmarketvip && ./nkmarketvip
+
+apt update -y && apt upgrade -y && wget https://raw.githubusercontent.com/nkglobalmarket/SSHPLUS/master/nkmarket.sh && chmod 777 nkmarket.sh && ./nkmarket.sh
